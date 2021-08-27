@@ -25,6 +25,9 @@ const chainIds = {
   ropsten: 3,
 };
 
+const isOptimizerEnabled: boolean = true;
+const numOptimizerRuns: number = 50000;
+
 // Ensure that we have all the environment variables we need.
 const mnemonic: string | undefined = process.env.MNEMONIC;
 if (!mnemonic) {
@@ -78,20 +81,89 @@ const config: HardhatUserConfig = {
     tests: "./test",
   },
   solidity: {
-    version: "0.8.6",
-    settings: {
-      metadata: {
-        // Not including the metadata hash
-        // https://github.com/paulrberg/solidity-template/issues/31
-        bytecodeHash: "none",
+    compilers: [
+      {
+        settings: {
+          optimizer: {
+            enabled: isOptimizerEnabled,
+            runs: numOptimizerRuns,
+          },
+        },
+        version: "0.7.3",
       },
-      // Disable the optimizer when debugging
-      // https://hardhat.org/hardhat-network/#solidity-optimizer-support
-      optimizer: {
-        enabled: true,
-        runs: 800,
+      {
+        settings: {
+          optimizer: {
+            enabled: isOptimizerEnabled,
+            runs: numOptimizerRuns,
+          },
+        },
+        version: "0.7.0",
       },
-    },
+      {
+        settings: {
+          optimizer: {
+            enabled: isOptimizerEnabled,
+            runs: numOptimizerRuns,
+          },
+        },
+        version: "0.6.12",
+      },
+      {
+        settings: {
+          optimizer: {
+            enabled: isOptimizerEnabled,
+            runs: numOptimizerRuns,
+          },
+        },
+        version: "0.6.11",
+      },
+      {
+        settings: {
+          optimizer: {
+            enabled: isOptimizerEnabled,
+            runs: numOptimizerRuns,
+          },
+        },
+        version: "0.6.6",
+      },
+      {
+        settings: {
+          optimizer: {
+            enabled: isOptimizerEnabled,
+            runs: numOptimizerRuns,
+          },
+        },
+        version: "0.5.17",
+      },
+      {
+        settings: {
+          optimizer: {
+            enabled: isOptimizerEnabled,
+            runs: numOptimizerRuns,
+          },
+        },
+        version: "0.5.16",
+      },
+      {
+        settings: {
+          optimizer: {
+            enabled: isOptimizerEnabled,
+            runs: numOptimizerRuns,
+          },
+        },
+        version: "0.5.11",
+      },
+      {
+        settings: {
+          optimizer: {
+            enabled: isOptimizerEnabled,
+            runs: numOptimizerRuns,
+          },
+        },
+        version: "0.4.25",
+      },
+    ],
   },
   typechain: {
     outDir: "typechain",

@@ -5,9 +5,15 @@ pragma experimental ABIEncoderV2;
 
 import "../interfaces/IMessenger.sol";
 
-abstract contract Messenger  is IMessenger {
-	string name;
-    constructor(string memory _namej) internal {
-        name = _name;
+abstract contract Messenger is IMessenger {
+    address public immutable authorisedCaller;
+
+    constructor(address _authorisedCaller) internal {
+        authorisedCaller = _authorisedCaller;
+    }
+
+    modifier onlyAuth() {
+        require(msg.sender == authorisedCaller, "Sender must be the authorised");
+        _;
     }
 }

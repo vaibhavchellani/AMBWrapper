@@ -5,5 +5,4 @@ pragma experimental ABIEncoderV2;
 
 interface IMessenger {
     function sendCrossDomainMessage(bytes memory _calldata) external;
-    function verifySender(address l1BridgeCaller, bytes memory _data) external;
 }
